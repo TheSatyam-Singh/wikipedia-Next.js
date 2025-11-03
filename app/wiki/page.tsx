@@ -3,6 +3,9 @@ import axios from "axios";
 import dayjs from "dayjs";
 import Link from "next/link";
 
+// Force dynamic rendering to avoid build-time data fetching
+export const dynamic = 'force-dynamic';
+
 interface Root {
   tfa: Tfa;
   mostread: Mostread;
@@ -261,7 +264,7 @@ export default async function WikiPage() {
 }
 
 // components/Card.tsx
-function Card2({ title, content, link }) {
+function Card2({ title, content, link }: { title: string; content: string; link: string }) {
     return (
       <Card>
         <CardHeader>
@@ -280,7 +283,7 @@ function Card2({ title, content, link }) {
   }
 
   // components/Section.tsx
-function Section({ title, description, cards }) {
+function Section({ title, description, cards }: { title: string; description: string; cards: Array<{ title: string; content: string; link: string }> }) {
     return (
       <section>
         <h2 className="text-2xl font-bold mb-2">{title}</h2>

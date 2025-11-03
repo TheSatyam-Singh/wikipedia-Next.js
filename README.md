@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Wikipedia Next.js - Modern Wikipedia Search
 
-## Getting Started
+A modern, beautifully designed Wikipedia search application built with Next.js 14, featuring both traditional and AI-powered semantic search capabilities.
 
-First, run the development server:
+## ✨ Features
+
+- **Simple Search**: Fast, traditional Wikipedia article search with real-time suggestions
+- **AI Semantic Search**: Intelligent search powered by OpenAI GPT-3.5 that understands context and provides relevant article recommendations
+- **Featured Content**: Browse today's featured article, most-read articles, and historical events
+- **Modern UI**: Built with Tailwind CSS and Radix UI components for a sleek, responsive design
+- **Dark Mode**: Full dark mode support with theme persistence
+- **Image Optimization**: Automatic image optimization using Next.js Image component
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ installed
+- npm, yarn, pnpm, or bun package manager
+- OpenAI API key (for semantic search feature)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/TheSatyam-Singh/wikipedia-Next.js.git
+cd wikipedia-Next.js
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up environment variables:
+   - Copy `.env.example` to `.env.local`
+   - Add your OpenAI API key:
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+> **Note**: The semantic search feature requires an OpenAI API key. Simple search works without it.
+
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Build the optimized production bundle:
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI
+- **AI Integration**: OpenAI GPT-3.5
+- **HTTP Client**: Axios
+- **Type Safety**: TypeScript
+- **Animations**: Framer Motion
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🌐 Deploy on Vercel
 
-## Deploy on Vercel
+The easiest way to deploy this app is using [Vercel](https://vercel.com):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/TheSatyam-Singh/wikipedia-Next.js)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Push your code to GitHub
+2. Import your repository to Vercel
+3. Add your `OPENAI_API_KEY` environment variable in Vercel project settings
+4. Deploy!
+
+Vercel will automatically detect Next.js and configure the build settings.
+
+## 📝 Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `OPENAI_API_KEY` | OpenAI API key for semantic search | Optional (required for AI features) |
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 🔗 Links
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Wikipedia API](https://www.mediawiki.org/wiki/API:Main_page)
+- [OpenAI API](https://platform.openai.com/docs)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Radix UI](https://www.radix-ui.com)
