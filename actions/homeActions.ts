@@ -30,7 +30,7 @@ export type SemanticSearchActionActionResponse = {
         title: string;
         excerpt: string;
     }>,
-    sumary: string;
+    summary: string;
 }
 
 export const SemanticSearchAction = async (prevData: any, formData: FormData) => {
@@ -101,7 +101,7 @@ export const SemanticSearchAction = async (prevData: any, formData: FormData) =>
 
         return createResponse('success', 'Search completed successfully', { 
             data: final,
-            sumary: GPTResponse.summary
+            summary: GPTResponse.summary
         });
     } catch (error) {
         console.error('Semantic search error:', error);
