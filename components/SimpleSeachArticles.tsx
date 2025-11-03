@@ -132,6 +132,7 @@ export default function SimpleSearchArticles() {
                     alt={item.title}
                     width={64}
                     height={64}
+                    sizes="64px"
                     className="h-16 w-16 mr-4 object-contain"
                   />
                 )}
