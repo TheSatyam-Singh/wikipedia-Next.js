@@ -3,8 +3,6 @@ import { createResponse } from "@/lib/fuctions";
 import OpenAI from 'openai'
 import axios from "axios";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! })
-
 type GPTResponse = {
     data: Array<{
         title: string;
@@ -32,7 +30,7 @@ export type SemanticSearchActionActionResponse = {
         title: string;
         excerpt: string;
     }>,
-    sumary: string;
+    summary: string;
 }
 
 export const SemanticSearchAction = async (prevData: any, formData: FormData) => {
@@ -43,7 +41,15 @@ export const SemanticSearchAction = async (prevData: any, formData: FormData) =>
         return createResponse('error', 'Please provide a search query');
     }
 
-    const response = await openai.chat.completions.create({
+    if (!process.env.OPENAI_API_KEY) {
+        return createResponse('error', 'OpenAI API key is not configured. Please add OPENAI_API_KEY to your environment variables.');
+    }
+
+    try {
+        // Initialize OpenAI client only when needed
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! })
+        
+        const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
             {
@@ -55,7 +61,7 @@ export const SemanticSearchAction = async (prevData: any, formData: FormData) =>
                         title: string;
                         excerpt: string;
                     }>,
-                    sumaary: string;
+                    summary: string;
                 }
                 === End of Response ===
                 The response should follow the typescript type, give at least 5 articles in the json response, the search query is: ${userSearch}`,
@@ -67,7 +73,11 @@ export const SemanticSearchAction = async (prevData: any, formData: FormData) =>
         response_format: { type: "json_object" },
     });
 
-    const GPTResponse = JSON.parse(response.choices[0].message.content) as GPTResponse;
+    const content = response.choices[0].message.content;
+    if (!content) {
+        return createResponse('error', 'No response from AI. Please try again.');
+    }
+    const GPTResponse = JSON.parse(content) as GPTResponse;
 
     // for each of the obj title, call the wikipedia api to get the article, then return the title and the excerpt
     const endData = GPTResponse.data.map(async (obj) => {
@@ -89,9 +99,13 @@ export const SemanticSearchAction = async (prevData: any, formData: FormData) =>
         excerpt: string;
     }>;
 
-    return createResponse('success', 'Search completed successfully', { 
-        data: final,
-        sumary: GPTResponse.summary
-    });
+        return createResponse('success', 'Search completed successfully', { 
+            data: final,
+            summary: GPTResponse.summary
+        });
+    } catch (error) {
+        console.error('Semantic search error:', error);
+        return createResponse('error', 'Failed to perform semantic search. Please try again later.');
+    }
 
 }

@@ -57,7 +57,7 @@ export default function SemanticSearch() {
             Search Results: {search}, {(state.data as SemanticSearchActionActionResponse)?.data.length} results
           </h3>
           <p className="text-gray-200 ">
-            {(state.data as SemanticSearchActionActionResponse)?.sumary}
+            {(state.data as SemanticSearchActionActionResponse)?.summary}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {(state.data as SemanticSearchActionActionResponse).data.map(

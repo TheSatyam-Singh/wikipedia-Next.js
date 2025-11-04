@@ -5,6 +5,7 @@ import { Input } from "./ui/input";
 import { useOnClickOutside } from "usehooks-ts";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const useDebounce = (value: any, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -126,9 +127,12 @@ export default function SimpleSearchArticles() {
                 className="flex p-2 hover:bg-primary/10 cursor-pointer"
               >
                 {item.thumbnail && (
-                  <img
+                  <Image
                     src={item.thumbnail.url}
-                    alt=""
+                    alt={item.title}
+                    width={64}
+                    height={64}
+                    sizes="64px"
                     className="h-16 w-16 mr-4 object-contain"
                   />
                 )}
